@@ -52,4 +52,8 @@ table {
 
 
 
-body {font-family: Arial;}
+body {font-family: times new roman;}
+h1{float: right;}
+nav{width: 600px;
+margin 10px auto;
+overflow: hidden;}
