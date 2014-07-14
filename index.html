@@ -372,17 +372,17 @@ The bottom line is that I am confident that I can take your business to new leve
             <div class="eight columns">
 
                <!-- form -->
-               <form action="sendEmail.php" method="post" id="contactForm" name="contactForm">
+               <form class="full-form has-return-msg" id="send-message" action="send_email.php" method="post" data-success-msg="Email successfully sent." data-ajax-fail-msg="Ajax could not contact the script." data-email-not-set-msg="Please enter a valid email address." data-name-not-set-msg="Please enter your name." data-message-not-set-msg="Please enter the message." data-all-fields-required-msg="All fields are required.">
 					<fieldset>
 
                   <div>
 						   <label for="contactName">Name <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="contactName" name="contactName">
+						   <input type="text" value="" size="35" name="name">
                   </div>
 
                   <div>
 						   <label for="contactEmail">Email <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="contactEmail" name="contactEmail">
+						   <input type="text" value="" size="35" name="email">
                   </div>
 
                   <div>
@@ -392,15 +392,21 @@ The bottom line is that I am confident that I can take your business to new leve
 
                   <div>
                      <label for="contactMessage">Message <span class="required">*</span></label>
-                     <textarea cols="50" rows="15" id="contactMessage" name="contactMessage"></textarea>
+                     <textarea cols="50" rows="15" name="message"></textarea>
                   </div>
 
                   <div>
-                     <button class="submit" value="Send">Submit</button>
+                     <input class="submit" type="submit" value="Send">
                      <span id="image-loader">
                         <img alt="" src="images/loader.gif">
                      </span>
+
                   </div>
+
+                  
+               
+                  <div class="ajax-loader"></div>
+                  <div class="return-msg"></div>
 
 					</fieldset>
 				   </form> <!-- Form End -->
