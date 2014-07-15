@@ -372,37 +372,38 @@ The bottom line is that I am confident that I can take your business to new leve
             <div class="eight columns">
 
                <!-- form -->
-               <form id="send-message" action="send_email.php" method="post" data-success-msg="Email successfully sent." data-ajax-fail-msg="Ajax could not contact the script." data-email-not-set-msg="Please enter a valid email address." data-name-not-set-msg="Please enter your name." data-message-not-set-msg="Please enter the message." data-all-fields-required-msg="All fields are required.">
-					<fieldset>
+               <form action="inc/sendEmail.php" method="post" id="contactForm" name="contactForm">
+               <fieldset>
 
                   <div>
-						   <label for="contactName">Name <span class="required">*</span></label>
-						   <input type="text" value="" size="35" name="name">
+                     <label for="contactName">Name <span class="required">*</span></label>
+                     <input type="text" value="" size="35" id="contactName" name="contactName">
                   </div>
 
                   <div>
-						   <label for="contactEmail">Email <span class="required">*</span></label>
-						   <input type="text" value="" size="35" name="email">
-                  </div>s
+                     <label for="contactEmail">Email <span class="required">*</span></label>
+                     <input type="text" value="" size="35" id="contactEmail" name="contactEmail">
+                  </div>
+
+                  <div>
+                     <label for="contactSubject">Subject</label>
+                     <input type="text" value="" size="35" id="contactSubject" name="contactSubject">
+                  </div>
+
                   <div>
                      <label for="contactMessage">Message <span class="required">*</span></label>
-                     <textarea cols="50" rows="15" name="message"></textarea>
+                     <textarea cols="50" rows="15" id="contactMessage" name="contactMessage"></textarea>
                   </div>
-                  <div>s
-                     <input class="submit" type="submit" value="Send">
+
+                  <div>
+                     <button class="submit">Submit</button>
                      <span id="image-loader">
-                        <img alt="" src="images/loader.gif">
+                        <img alt=""  src="images/loader.gif">
                      </span>
-
                   </div>
 
-                  
-               
-                  <div class="ajax-loader"></div>
-                  <div class="return-msg"></div>
-
-					</fieldset>
-				   </form> <!-- Form End -->
+               </fieldset>
+               </form> <!-- Form End -->
 
                <!-- contact-warning -->
                <div id="message-warning"> Error boy</div>
