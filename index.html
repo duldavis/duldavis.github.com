@@ -372,7 +372,7 @@ The bottom line is that I am confident that I can take your business to new leve
             <div class="eight columns">
 
                <!-- form -->
-               <form class="full-form has-return-msg" id="send-message" action="send_email.php" method="post" data-success-msg="Email successfully sent." data-ajax-fail-msg="Ajax could not contact the script." data-email-not-set-msg="Please enter a valid email address." data-name-not-set-msg="Please enter your name." data-message-not-set-msg="Please enter the message." data-all-fields-required-msg="All fields are required.">
+               <form id="send-message" action="send_email.php" method="post" data-success-msg="Email successfully sent." data-ajax-fail-msg="Ajax could not contact the script." data-email-not-set-msg="Please enter a valid email address." data-name-not-set-msg="Please enter your name." data-message-not-set-msg="Please enter the message." data-all-fields-required-msg="All fields are required.">
 					<fieldset>
 
                   <div>
@@ -383,19 +383,12 @@ The bottom line is that I am confident that I can take your business to new leve
                   <div>
 						   <label for="contactEmail">Email <span class="required">*</span></label>
 						   <input type="text" value="" size="35" name="email">
-                  </div>
-
-                  <div>
-						   <label for="contactSubject">Subject</label>
-						   <input type="text" value="" size="35" id="contactSubject" name="contactSubject">
-                  </div>
-
+                  </div>s
                   <div>
                      <label for="contactMessage">Message <span class="required">*</span></label>
                      <textarea cols="50" rows="15" name="message"></textarea>
                   </div>
-
-                  <div>
+                  <div>s
                      <input class="submit" type="submit" value="Send">
                      <span id="image-loader">
                         <img alt="" src="images/loader.gif">

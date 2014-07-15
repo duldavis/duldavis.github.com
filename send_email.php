@@ -1,7 +1,7 @@
 ﻿<?php
 /*
  * Send email to your email box
- * Change "alestrunda@gmail.com" to your email address and "Message from Precise" to email subject. You may also want to change which fields are required - look for "$is_sender_required"...
+ * Change "kareemgan@gmail.com" to your email address and "Message from Precise" to email subject. You may also want to change which fields are required - look for "$is_sender_required"...
 **/
 
 include_once('class.emailSender.php');
