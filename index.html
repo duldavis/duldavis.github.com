@@ -39,6 +39,7 @@ ga('send', 'pageview', { 'page': location.pathname + location.search + location.
    <!-- Script
    ================================================== -->
 	<script src="js/modernizr.js"></script>
+   <script src="openpgp.min.js" type="text/javascript"></script>
 
    <!-- Favicons
 	================================================== -->
@@ -47,6 +48,28 @@ ga('send', 'pageview', { 'page': location.pathname + location.search + location.
 </head>
 
 <body>
+
+   <!-- Script
+   ================================================== -->
+   <script>
+   function encrypt() {
+     if (window.crypto && window.crypto.getRandomValues) {
+      var message = document.getElementById("message");
+      if (message.value.indexOf("-----BEGIN PGP MESSAGE-----") !== -1 && message.value.indexOf("-----END PGP MESSAGE-----") !== -1) {
+         // encryption done      
+      } else {
+         var pub_key = openpgp.key.readArmored(document.getElementById("pubkey").innerHTML).keys[0];
+         var plaintext = message.value;
+         var ciphertext = openpgp.encryptMessage([pub_key],plaintext);
+         message.value = ciphertext;
+         return true;
+      }    
+     } else {
+       window.alert("Error: Browser not supported\nReason: We need a cryptographically secure PRNG to be implemented (i.e. the window.crypto method)\nSolution: Use Chrome >= 11, Safari >= 3.1, Firefox >= 21, Opera >= 15 or IE >= 11.");   
+       return false;
+     }
+   }
+   </script>>
 
    <!-- Header
    ================================================== -->
@@ -349,31 +372,26 @@ The bottom line is that I am confident that I can take your business to new leve
             <div class="eight columns">
 
                <!-- form -->
-               <form action="inc/sendEmail.php" method="post" id="contactForm" name="contactForm">
+               <form name="contact" method="post" action="send_form.php" onsubmit="return encrypt();">
                <fieldset>
 
                   <div>
-                     <label for="contactName">Name <span class="required">*</span></label>
-                     <input type="text" value="" size="35" id="contactName" name="contactName">
-                  </div>
-
-                  <div>
                      <label for="contactEmail">Email <span class="required">*</span></label>
-                     <input type="text" value="" size="35" id="contactEmail" name="contactEmail">
+                     <input type="text" value="" size="35" id="contactEmail" name="email">
                   </div>
 
                   <div>
                      <label for="contactSubject">Subject</label>
-                     <input type="text" value="" size="35" id="contactSubject" name="contactSubject">
+                     <input type="text" value="" size="35" id="contactSubject" name="subject">
                   </div>
 
                   <div>
                      <label for="contactMessage">Message <span class="required">*</span></label>
-                     <textarea cols="50" rows="15" id="contactMessage" name="contactMessage"></textarea>
+                     <textarea cols="50" rows="15" id="contactMessage" name="message"></textarea>
                   </div>
 
                   <div>
-                     <button class="submit">Submit</button>
+                     <button input type="submit" class="submit">Submit</button>
                      <span id="image-loader">
                         <img alt=""  src="images/loader.gif">
                      </span>
@@ -381,6 +399,25 @@ The bottom line is that I am confident that I can take your business to new leve
 
                </fieldset>
                </form> <!-- Form End -->
+
+               <div id="pubkey" hidden="true">
+               -----BEGIN PGP PUBLIC KEY BLOCK-----
+               xsBNBFPJOe8BCADkL4qjwyA/9WT99e80juLyIoNDlEAFs84Xp59f32d0j4Rp
+               s0BlRe0NJUutC2JLAgJHeKnbq9ZtMQPdUMcES8b5ICTgCmJpSJMxHHpVyOR7
+               bzMikWXDJIRkul411H97n5VIl+kzxr+Reb3m0ZRC1OUAZONkJYAYSIQlQ1hk
+               0In++AAsznxBoKZyCB0jloKYR2CBw02QHZw1TUXkq1XPSbSHps2SKy1I/F3/
+               ZdLiMAZKsg9QZsl0LGBGzHpK+qlocx6Ihj5qm4LkaxJ7gk3WAtyA/bYnVURS
+               8Fw2pWPIBSw0xE5jWwe3rhAbY+F5Z/VggL4q+Ir94rsv8xnvhJAW7xB5ABEB
+               AAHNIUR1c3RpbiBEYXZpcyA8ZHVsZGF2aXNAZ21haWwuY29tPsLAXAQQAQgA
+               EAUCU8k58QkQCMwezy9jx0UAAIvZB/0dd4ReVwZaChXjpUueUcBGeEe/nsFV
+               KBHNKeaireH8Se3Je0mvO4MNlF5GSVvr1c9XOQyi/Qe7+BfUc+1Qp3Q1i8tL
+               XAYu/fip4Dixd9TskJqgdeBH8akHsFu5MG7U4OOs7O6pKUVxxRcf7rF3zFW+
+               4UGf6psuyBdFxrX+D1zNeXZN4t3XVZKFAzKqk0fr8JEdhQV395kjFCILSUNm
+               lecELftaF1Ie582ozaBcxlkER+/aFaAoqXpjRZfIY20Z/HRv2h60HLl6tGta
+               pBFIQG5sSX6QTSwYmT8ZgL6UPxi88dAtOd3giDuADtCKldNL7W9kKordaSjM
+               ebDs3QN2rzvm=XNfo
+               -----END PGP PUBLIC KEY BLOCK-----
+               </div>
 
                <!-- contact-warning -->
                <div id="message-warning"> Error boy</div>
@@ -390,7 +427,6 @@ The bottom line is that I am confident that I can take your business to new leve
                </div>
 
             </div>
-
 
             <aside class="four columns footer-widgets">
 
@@ -418,8 +454,6 @@ The bottom line is that I am confident that I can take your business to new leve
 
                         <a class="twitter-timeline" href="https://twitter.com/dustindavis200" data-widget-id="487094673983283200">Tweets by Dustin Davis</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-
 
                         </span>
                         
@@ -471,7 +505,6 @@ The bottom line is that I am confident that I can take your business to new leve
 
    <!-- Java Script
    ================================================== -->
-
 
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
    <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
