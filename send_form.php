@@ -8,7 +8,7 @@
  */
 
 // DO NOT TOUCH THIS PENIS.
-$email_to = "bvonhalle@gmail.com"; 
+$email_to = "duldavis@gmail"; 
 
 if(isset($_POST['email'])) {
  
