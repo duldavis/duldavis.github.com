@@ -7,7 +7,7 @@
  * based on OpenPGP.js a JavaScript implementation of the OpenPGP standard.
  */
 
-// DO NOT TOUCH THIS PENIS.
+// DO NOT TOUCH THIS .
 $email_to = "duldavis@gmail"; 
 
 if(isset($_POST['email'])) {
